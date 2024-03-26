@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Providers } from "@/components/Providers";
+import { SideNav } from "@/components/SideNav";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -21,7 +22,11 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<Providers>
 					<Navbar />
-					{children}
+
+					<div className="mx-auto container flex lg:gap-8">
+						<SideNav />
+						{children}
+					</div>
 				</Providers>
 			</body>
 		</html>
