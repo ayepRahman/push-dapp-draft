@@ -20,11 +20,24 @@ const chains: (Chain | ChainWithDecimalId)[] = [
 	},
 ];
 
-const injected = injectedModule?.();
+const injected = injectedModule();
 
 const wallets = [injected];
 
 export const web3Onboard = init({
 	wallets,
 	chains,
+	appMetadata: {
+		name: "Push Dapp Draft",
+		description: "Push Dapp Draft",
+		recommendedInjectedWallets: [
+			{
+				// display name
+				name: "MetaMask",
+				// link to download wallet
+				url: "https://metamask.io",
+			},
+			{ name: "Coinbase", url: "https://wallet.coinbase.com/" },
+		],
+	},
 });
