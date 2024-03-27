@@ -23,6 +23,14 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "gateway.ipfs.io",
 			},
+			{
+				protocol: "https",
+				hostname: "epns-testing.infura-ipfs.io",
+			},
+			{
+				protocol: "https",
+				hostname: "i0.wp.com",
+			},
 		],
 	},
 };

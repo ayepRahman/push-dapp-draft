@@ -1,32 +1,11 @@
 "use client";
 
+// import Image from "next/image";
 import { useChannels } from "@/hooks/useChannels";
-import { cn } from "@/lib/utils";
-import type { Channel } from "@/types/Channel";
-import Image from "next/image";
 import { useMemo } from "react";
 import InfiniteScroll from "react-infinite-scroller";
-import type { Index, IndexRange, ListRowProps } from "react-virtualized";
-
-export function ChannelRow({ channel }: { channel: Channel }) {
-	console.log(channel.icon);
-
-	return (
-		<div
-			className={cn(
-				"p-4 border rounded-xl flex items-center justify-between w-full",
-			)}
-		>
-			<div className="flex items-center gap-2">
-				<div className="h-12 w-12 relative border rounded-xl overflow-hidden">
-					<Image fill src={channel.icon} alt={channel.name} />
-				</div>
-			</div>
-
-			<div>opt-in</div>
-		</div>
-	);
-}
+import { Skeleton } from "../ui/skeleton";
+import { ChannelRow } from "./ChannelRow";
 
 export function Channels() {
 	const { data, isLoading, isFetching, hasNextPage, fetchNextPage } =
@@ -38,36 +17,30 @@ export function Channels() {
 
 	console.log("channels", channels);
 
-	const rowRenderer = ({ key, index, style }: ListRowProps) => {
-		return <div key={key}>{channels?.[index]?.info}</div>;
-	};
-
-	const isRowLoaded = ({ index }: Index) => {
-		return !!channels[index];
-	};
-
-	const loadMoreRows = async (props: IndexRange) => {
-		return await fetchNextPage();
-	};
+	const renderLoader = (length: number) => (
+		<div className="flex flex-col gap-4">
+			{Array.from({ length }).map((_, i) => (
+				<Skeleton
+					className="w-full border rounded-xl h-[82px]"
+					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+					key={`placeholder-${i}`}
+				/>
+			))}
+		</div>
+	);
 
 	return (
-		<div>
-			<InfiniteScroll
-				className="flex flex-col gap-4"
-				// pageStart={0}
-				loadMore={() => fetchNextPage()}
-				hasMore={hasNextPage}
-				loader={
-					<div className="loader" key={0}>
-						Loading ...
-					</div>
-				}
-			>
-				{!!channels?.length &&
-					channels.map((channel) => {
-						return <ChannelRow channel={channel} />;
-					})}
-			</InfiniteScroll>
-		</div>
+		<InfiniteScroll
+			className=" flex flex-col gap-4 overflow-y-auto"
+			loadMore={() => fetchNextPage()}
+			hasMore={hasNextPage}
+			loader={renderLoader(3)}
+		>
+			{isLoading && renderLoader(10)}
+			{!!channels?.length &&
+				channels.map((channel, i) => {
+					return <ChannelRow key={`${channel.id}-${i}`} channel={channel} />;
+				})}
+		</InfiniteScroll>
 	);
 }
