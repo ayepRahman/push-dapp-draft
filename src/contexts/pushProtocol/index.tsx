@@ -17,6 +17,13 @@ export const PushProtocolContext = createContext<PushProtocolContextProps>({
 	signer: undefined,
 });
 
+/**
+ * Provides the PushProtocol context and initializes the provider, signer and Push API.
+ *
+ * Initializes a provider from the connected wallet if available, otherwise uses a JSON RPC provider.
+ * Also initializes a signer from the provider and wallet, and fetches the Push API.
+ * Exposes these via the PushProtocolContext.
+ */
 export function PushProtocolProvider({ children }: PushProtocolProviderProps) {
 	const [{ wallet }] = useConnectWallet();
 
@@ -26,13 +33,8 @@ export function PushProtocolProvider({ children }: PushProtocolProviderProps) {
 			: new ethers.BrowserProvider(wallet?.provider);
 	}, [wallet]);
 
-	const { data: signer } = useGetSigner({
-		data: { provider, wallet },
-	});
-
-	const { data: pushApi } = useGetPushAPI({
-		data: { signer },
-	});
+	const { data: signer } = useGetSigner({ data: { provider, wallet } });
+	const { data: pushApi } = useGetPushAPI({ data: { wallet } });
 
 	return (
 		<PushProtocolContext.Provider value={{ provider, signer, pushApi }}>
@@ -40,3 +42,8 @@ export function PushProtocolProvider({ children }: PushProtocolProviderProps) {
 		</PushProtocolContext.Provider>
 	);
 }
+
+/**
+ * Sets the display name for this context in React Dev Tools.
+ */
+PushProtocolContext.displayName = "PushProtocolContext";
