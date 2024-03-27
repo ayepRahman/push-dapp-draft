@@ -1,4 +1,4 @@
-import type { Channel } from "@pushprotocol/restapi/src/lib/pushNotification/channel";
+import type { Channel } from "@/types/Channel";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { usePushProtocol } from "./usePushProtocol";
 

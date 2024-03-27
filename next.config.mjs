@@ -9,6 +9,22 @@ const nextConfig = {
 			},
 		];
 	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "push.org",
+			},
+			{
+				protocol: "https",
+				hostname: "google.com",
+			},
+			{
+				protocol: "https",
+				hostname: "gateway.ipfs.io",
+			},
+		],
+	},
 };
 
 export default nextConfig;
