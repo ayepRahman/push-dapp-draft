@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Providers } from "@/components/Providers";
 import { SideNav } from "@/components/SideNav";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -25,7 +26,13 @@ export default function RootLayout({
 
 					<div className="mx-auto container flex lg:gap-8">
 						<SideNav />
-						{children}
+						<div
+							className={cn(
+								"border rounded-xl w-full min-h-[calc(100vh_-_88px)]",
+							)}
+						>
+							{children}
+						</div>
 					</div>
 				</Providers>
 			</body>
