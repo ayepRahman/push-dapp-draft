@@ -31,7 +31,7 @@ export default function RootLayout({
 						<SideNav />
 						<div
 							className={cn(
-								"border rounded-xl w-full min-h-[calc(100vh_-_88px)]",
+								"border rounded-xl w-full min-h-[calc(100vh_-_88px)] overflow-hidden",
 							)}
 						>
 							{children}

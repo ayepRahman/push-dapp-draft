@@ -13,23 +13,9 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "push.org",
-			},
-			{
-				protocol: "https",
-				hostname: "google.com",
-			},
-			{
-				protocol: "https",
-				hostname: "gateway.ipfs.io",
-			},
-			{
-				protocol: "https",
-				hostname: "epns-testing.infura-ipfs.io",
-			},
-			{
-				protocol: "https",
-				hostname: "i0.wp.com",
+				hostname: "**",
+				port: "",
+				pathname: "**",
 			},
 		],
 	},

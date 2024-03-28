@@ -1,5 +1,5 @@
 export const ROUTES = {
 	HOME: "/",
 	CHANNELS: "/channels",
-	CHAT: "/chat",
+	NFTS: "/nfts",
 } as const;

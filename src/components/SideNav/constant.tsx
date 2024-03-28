@@ -1,5 +1,5 @@
 import { ROUTES } from "@/constants/routes";
-import { Compass, MessageCircleCode } from "lucide-react";
+import { Compass, ImagesIcon } from "lucide-react";
 
 export const navItems = [
 	{
@@ -8,8 +8,8 @@ export const navItems = [
 		href: ROUTES.CHANNELS,
 	},
 	{
-		name: "Chat",
-		icon: MessageCircleCode,
-		href: ROUTES.CHAT,
+		name: "NFTs",
+		icon: ImagesIcon,
+		href: ROUTES.NFTS,
 	},
 ];
