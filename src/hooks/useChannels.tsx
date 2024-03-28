@@ -1,6 +1,6 @@
 import type { Channel } from "@/types/Channel";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { usePushProtocol } from "./usePushProtocol";
+import { usePushProtocolContext } from "./usePushProtocolContext";
 
 type ChannelListResponse = {
 	channels: Channel[];
@@ -8,7 +8,7 @@ type ChannelListResponse = {
 };
 
 export function useChannels() {
-	const { pushApi } = usePushProtocol();
+	const { pushApi } = usePushProtocolContext();
 
 	return useInfiniteQuery({
 		queryKey: ["channels"],

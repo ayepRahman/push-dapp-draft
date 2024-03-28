@@ -1,6 +1,5 @@
 "use client";
 
-// import Image from "next/image";
 import { useChannels } from "@/hooks/useChannels";
 import { useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
@@ -9,8 +8,7 @@ import { Skeleton } from "../ui/skeleton";
 import { ChannelRow } from "./ChannelRow";
 
 export function Channels() {
-	const { data, isLoading, isFetching, hasNextPage, fetchNextPage } =
-		useChannels();
+	const { data, isLoading, hasNextPage, fetchNextPage } = useChannels();
 	const [value, setValue] = useState<string>("");
 
 	const channels = useMemo(() => {

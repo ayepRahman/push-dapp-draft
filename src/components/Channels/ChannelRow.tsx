@@ -1,36 +1,28 @@
 "use client";
 
-// import Image from "next/image";
 import { Image } from "@/components/Image";
 import { useGetIPFSUrlByHash } from "@/hooks/useGetIPFSUrlByHash";
 import { cn } from "@/lib/utils";
 import type { Channel } from "@/types/Channel";
 import { truncate } from "@/utils/truncate";
-import { useConnectWallet } from "@web3-onboard/react";
+import { OptInButton } from "../OptInButton";
 import { Pill } from "../Pill";
-import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 
-export function OptInButton() {
-	const [{ wallet }, connect] = useConnectWallet();
-
-	const handleOnClick = () => {
-		if (!wallet) {
-			connect();
-			return;
-		}
-	};
-
-	return <Button onClick={handleOnClick}>Opt In</Button>;
-}
-
+/**
+ * Renders a row for a channel
+ *
+ * Displays basic information about the channel like name, description and channel url.
+ * Also displays an opt-in button to join the channel.
+ *
+ * @param channel - The channel object
+ * @returns JSX for the channel row
+ */
 export function ChannelRow({ channel }: { channel: Channel }) {
 	const { data: url, isLoading } = useGetIPFSUrlByHash({
 		data: { hash: channel?.ipfshash || "" },
 		enabled: !!channel?.ipfshash,
 	});
-
-	console.log("channel.alias_address", channel.alias_address);
 
 	return (
 		<div
@@ -61,7 +53,7 @@ export function ChannelRow({ channel }: { channel: Channel }) {
 				</div>
 			</div>
 
-			<OptInButton />
+			<OptInButton channel={channel} />
 		</div>
 	);
 }
