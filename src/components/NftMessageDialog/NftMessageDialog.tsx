@@ -1,6 +1,9 @@
 import { cn } from "@/lib/utils";
 import type { SearchToken } from "@/types/SearchToken";
+import { stripIPFS } from "@/utils/stripIPFS";
+import { truncate } from "@/utils/truncate";
 import { Send } from "lucide-react";
+import { Image } from "../Image";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
@@ -8,6 +11,8 @@ import { Input } from "../ui/input";
 import { mockMessages } from "./mock";
 
 export function NftMessageDialog({ nft }: { nft: SearchToken }) {
+	const image = stripIPFS(nft?.image || "");
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -16,6 +21,17 @@ export function NftMessageDialog({ nft }: { nft: SearchToken }) {
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="max-w-[800px] w-full">
+				<div className="flex items-center gap-4 border-b pb-4">
+					<div className="h-12 w-12 rounded-full overflow-hidden relative">
+						<Image fill src={image} alt={nft.id} />
+					</div>
+
+					<div>
+						<div className="text-sm font-semibold">{nft?.contract_name}</div>
+						<div className="text-xs">#{truncate(nft?.token_id)}</div>
+					</div>
+				</div>
+
 				<div className="flex gap-8">
 					<div className="basis-10 flex flex-col gap-4">
 						{Array.from({ length: 10 }).map((_, i) => {
