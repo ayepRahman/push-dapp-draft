@@ -10,6 +10,12 @@ type ImageProps = NextImageProps & {
 	src: string;
 };
 
+/**
+ * Renders an image with loading and error states.
+ *
+ * Handles loading and error states by tracking booleans in state.
+ * Renders a placeholder image on error.
+ */
 export function Image({
 	src,
 	alt,

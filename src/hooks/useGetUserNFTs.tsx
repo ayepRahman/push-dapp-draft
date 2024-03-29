@@ -3,6 +3,12 @@ import type { UserNFTsParams } from "@/types/UserNFTsParams";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { sumBy } from "lodash";
 
+/**
+ * A hook that fetches user NFTs from the API.
+ *
+ * Accepts an options object to configure the query. Returns data
+ * via React Query.
+ */
 export function useGetUserNFTs(options?: {
 	data: UserNFTsParams;
 	initialPageParam?: number | undefined;

@@ -4,6 +4,14 @@ import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { navItems } from "./constant";
 
+/**
+ * Renders the side navigation menu.
+ *
+ * Maps over the navItems array to generate a list of navigation links. Each link
+ * checks the current pathname against its href to determine if it should be
+ * highlighted as the active page. Clicking a link will push that path to the
+ * router.
+ */
 export function SideNav() {
 	const pathName = usePathname();
 	const router = useRouter();

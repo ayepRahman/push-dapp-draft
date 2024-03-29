@@ -7,10 +7,22 @@ import { stripIPFS } from "@/utils/stripIPFS";
 import { truncate } from "@/utils/truncate";
 import { NftMessageDialog } from "../NftMessageDialog/NftMessageDialog";
 
+/**
+ * Renders an NFT card component.
+ *
+ * Displays an image, contract name, token ID and action menu for the given NFT token.
+ *
+ * @param nft - The NFT token data
+ * @param className - Additional CSS class names
+ * @returns JSX element for the NFT card
+ */
 export function NFTCard({
 	className,
 	nft,
-}: { nft: SearchToken; className?: string }) {
+}: {
+	nft: SearchToken;
+	className?: string;
+}) {
 	const image = stripIPFS(nft?.image || "");
 
 	return (

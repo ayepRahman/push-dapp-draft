@@ -3,6 +3,12 @@ import type { SearchTokensResponse } from "@/types/SearchTokensResponse";
 import type { UserNFTsParams } from "@/types/UserNFTsParams";
 import type { UserNFTsRes } from "@/types/UserNFTsRes";
 
+/**
+ * Fetch NFTs owned by a user from the Mintable API.
+ *
+ * @param data - Parameters for searching NFTs by owner
+ * @returns An object containing search results from the Mintable API
+ */
 export async function getUserNFTs(data: UserNFTsParams): Promise<UserNFTsRes> {
 	const res = await fetch(`${ENV.MINTABLE_API_URL}/tokens/search?network=1`, {
 		method: "POST",

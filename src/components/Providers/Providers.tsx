@@ -8,6 +8,12 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Web3OnboardProvider } from "@web3-onboard/react";
 import type { PropsWithChildren } from "react";
 
+/**
+ * Renders React Query, Web3Onboard and context providers
+ *
+ * This exported function renders the necessary providers for data fetching with React Query
+ * and Web3 authentication/connection with Web3Onboard. It also sets up context providers for application state.
+ */
 export function Providers({ children }: PropsWithChildren) {
 	return (
 		<QueryClientProvider client={queryClient}>

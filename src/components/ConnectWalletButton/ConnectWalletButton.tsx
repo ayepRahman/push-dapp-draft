@@ -10,6 +10,13 @@ import {
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
+/**
+ * Renders a button to connect a wallet or display account details if already connected.
+ *
+ * Handles connecting/disconnecting the wallet via the useConnectWallet hook.
+ * Displays a dropdown menu for the connected account with logout option.
+ * Falls back to a "Connect Wallet" button if no wallet is connected.
+ */
 export function ConnectWalletButton() {
 	const [{ connecting, wallet }, connect, disconnect] = useConnectWallet();
 

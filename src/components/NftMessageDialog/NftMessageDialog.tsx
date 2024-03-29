@@ -10,6 +10,12 @@ import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { mockMessages } from "./mock";
 
+/**
+ * Renders a dialog for messaging about an NFT.
+ *
+ * Displays NFT details like image, contract and token ID. Renders a mock list of
+ * previous messages. Includes an input and button to send new messages.
+ */
 export function NftMessageDialog({ nft }: { nft: SearchToken }) {
 	const image = stripIPFS(nft?.image || "");
 

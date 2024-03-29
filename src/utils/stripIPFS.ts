@@ -1,6 +1,15 @@
 import { MINTABLE_INFURA_IPFS_URL } from "@/constants/constants";
 import { isValidIPFS } from "./isValidIPFS";
 
+/**
+ * Strips IPFS hashes from image parameters
+ *
+ * Removes IPFS prefixes like "ipfs://" from image URLs and standardizes
+ * them to the MINTABLE_INFURA_IPFS_URL format for consistent storage and retrieval.
+ *
+ * @param imageParam - The image parameter that may contain an IPFS hash
+ * @returns The standardized image URL without IPFS prefixes
+ */
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const stripIPFS = (imageParam: any) => {
 	let localImageParam = imageParam;

@@ -1,12 +1,14 @@
-import type { Channel } from "@/types/Channel";
+import type { ChannelListResponse } from "@/types/ChannelListResponse";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { usePushProtocolContext } from "./usePushProtocolContext";
 
-type ChannelListResponse = {
-	channels: Channel[];
-	itemcount: number;
-};
-
+/**
+ * Returns an infinite query hook for fetching channels from the Push API.
+ *
+ * The query fetches channels paginated in pages of 10. It will refetch
+ * when the next page parameter changes after reaching the end of the
+ * previous page.
+ */
 export function useChannels() {
 	const { pushApi } = usePushProtocolContext();
 

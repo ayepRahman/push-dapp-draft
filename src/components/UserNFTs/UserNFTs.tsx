@@ -13,6 +13,10 @@ import { NFTCard } from "../NFTCard/NFTCard";
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 
+/**
+ * Renders the user's NFT collection. Retrieves NFT data from mintable API using
+ * the user's wallet address. Allows infinite scrolling to load more NFT pages.
+ */
 export function UserNFTs() {
 	const [{ wallet, connecting }, connect] = useConnectWallet();
 
@@ -24,7 +28,10 @@ export function UserNFTs() {
 		data: { searchTerm: address || "" },
 	});
 
-	const nfts = useMemo(() => {
+	/**
+	 * Memoizes the flattened list of NFTs from all pages
+	 * to improve performance.
+	 */ const nfts = useMemo(() => {
 		return data?.pages.flatMap((page) => page.data);
 	}, [data]);
 
